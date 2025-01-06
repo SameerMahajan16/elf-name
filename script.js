@@ -30,3 +30,23 @@ function genLastName(lastName) {
 function capitalize(input) {
   return input.charAt(0).toUpperCase() + input.slice(1).toLowerCase();
 }
+
+function genFullName() {
+  const firstName = document.getElementById('firstName').value.trim();
+  const lastName = document.getElementById('lastName').value.trim();
+  const roadType = document.getElementById('roadType').value.toLowerCase();
+  const favoriteColor = document.getElementById('favoriteColor').value.trim();
+
+  if (!firstName || !lastName || !roadType || !favoriteColor) {
+      document.getElementById('elfName').textContent = 'Please fill in all fields to generate your elf name.';
+      return;
+  }
+
+  const prefix = capitalize(genPrefix(firstName));
+  const newFirstName = capitalize(genFirstName(firstName));
+  const middleName = capitalize(genMiddleName(roadType, favoriteColor));
+  const newLastName = capitalize(genLastName(lastName));
+
+  const fullName = `${prefix} ${newFirstName} ${middleName} ${newLastName}`;
+  document.getElementById('elfName').textContent = fullName;
+}
